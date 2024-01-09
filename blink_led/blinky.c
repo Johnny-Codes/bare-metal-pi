@@ -14,5 +14,6 @@ int main(int argc, char **argv)
         bcm2835_gpio_clr(LED);
         bcm2835_delay(delay);
     }
+    bcm2835_close();
     return 0;
 }
