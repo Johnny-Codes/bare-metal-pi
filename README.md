@@ -1,6 +1,10 @@
 My knowledge for bare metal programming on an RPi 4 Model B
 
-## Resources
+## Libraries
+
+[] bcm2835.h - https://github.com/janne/bcm2835/blob/master/bcm2835.h
+
+## Learning Resources
 [] youtube.com/@SpazztechLLC
 
 [] youtube.com/@lowleveldevel1712
