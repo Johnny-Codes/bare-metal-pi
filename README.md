@@ -9,6 +9,9 @@ My knowledge for bare metal programming on an RPi 4 Model B
 - gcc -o output-filename input-filename -lbcm2835  
 
 ## Learning Resources
+
+### Bare Metal Coding
+
 - youtube.com/@SpazztechLLC
 
 - youtube.com/@lowleveldevel1712
@@ -16,6 +19,10 @@ My knowledge for bare metal programming on an RPi 4 Model B
 - github.com/s-matyukevich/raspberry-pi-os
 
 - youtube.com/@LowLevelLearning
+
+### Electronics/Electronics Engineering
+
+- https://www.youtube.com/@SimplyElectronicsOfficial
 
 ## Using the bcm2835.h
 ```
