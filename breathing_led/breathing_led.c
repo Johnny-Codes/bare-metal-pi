@@ -29,3 +29,5 @@ int main(int argc, char **argv)
     bcm2835_close();
     return 0;
 }
+
+// https://www.airspayce.com/mikem/bcm2835/pwm_8c-example.html help
