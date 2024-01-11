@@ -16,9 +16,7 @@ int userPrompt()
         printf("Yay?\n");
         return x;
     } else {
-        printf("not yay\n");
-        x = -1;
-        userPrompt();
+        return 0;
     }
 }   
 
@@ -31,8 +29,10 @@ int main(int argc, char **argv)
     printf("\nInitialized\n");
     
     // initialize userLights for userPrompt()
-    int userLights = userPrompt(); 
-
+    int userLights = 0; 
+    while (userLights < 1 || userLights > 10) {
+        userLights = userPrompt();
+    }
     printf("userLights: %i\n", userLights);
     
     // set all pins to output
