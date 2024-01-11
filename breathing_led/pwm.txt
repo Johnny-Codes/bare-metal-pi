@@ -1,0 +1,3 @@
+https://www.sciencedirect.com/topics/engineering/pulse-width-modulation#:~:text=Pulse%20width%20modulation%20(PWM)%20is,for%20a%20low%2Damplitude%20signal.
+
+https://byjus.com/physics/pulse-width-modulation/#:~:text=Width%20Modulation%20technique%3F-,Pulse%20width%20modulation%20or%20PWM%20is%20a%20commonly%20used%20control,continuously%20varying%20(analog)%20signal.
