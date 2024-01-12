@@ -1,3 +1,5 @@
+# Bare Metal C Programming on a Raspberry Pi 4 Model B
+
 My knowledge for bare metal programming on an RPi 4 Model B
 
 ## Libraries
@@ -6,7 +8,19 @@ My knowledge for bare metal programming on an RPi 4 Model B
 
 ## Common Commands
 
+### Making files
+
 - gcc -o output-filename input-filename -lbcm2835  
+
+### Apache server
+
+start command: sydo systemctl start apache2.service
+
+stop command: sudo systemctl stop apache2.service
+
+restart command: sudo systemctl restart apache2.service
+
+status command: sudo systemctl status apache2.service
 
 ## Learning Resources
 
