@@ -39,6 +39,7 @@ status command: sudo systemctl status apache2.service
 - https://www.youtube.com/@SimplyElectronicsOfficial
 
 ## Using the bcm2835.h
+
 ```
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.69.tar.gz
 tar -zxvf bcm2835-1.69.tar.gz
@@ -46,4 +47,12 @@ cd bcm2835-1.69
 ./configure
 make
 sudo make install
+```
+
+## Installing Apache2 (Linux/Unix)
+
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install apache2
 ```
