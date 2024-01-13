@@ -1,4 +1,4 @@
-# Bare Metal C Programming on a Raspberry Pi 4 Model B
+#Bare Metal C Programming on a Raspberry Pi 4 Model B
 
 My knowledge for bare metal programming on an RPi 4 Model B
 
@@ -14,7 +14,7 @@ My knowledge for bare metal programming on an RPi 4 Model B
 
 ### Apache server
 
-start command: sydo systemctl start apache2.service
+start command: sudo systemctl start apache2.service
 
 stop command: sudo systemctl stop apache2.service
 
@@ -56,3 +56,5 @@ sudo apt update
 sudo apt upgrade
 sudo apt install apache2
 ```
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-ubunty-16-04

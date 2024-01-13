@@ -20,8 +20,14 @@ int main(int argc, char **argv)
     int data = 1;
     
     while (1) {
-        if (data == 1) direction = 1;
-        else if (data == RANGE-1) direction = -1;
+        if (data == 1) {
+            direction = 1;
+            bcm2835_delay(5000);
+        }
+        else if (data == RANGE-1) {
+            direction = -1;
+            bcm2835_delay(5000);
+        }
         data += direction;
         bcm2835_pwm_set_data(PWM_CHANNEL, data);
         bcm2835_delay(1);
