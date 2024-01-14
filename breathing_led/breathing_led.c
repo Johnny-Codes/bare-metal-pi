@@ -18,20 +18,22 @@ int main(int argc, char **argv)
 
     int direction = 1;
     int data = 1;
-    
-    while (1) {
+    int i = 0;
+    for (i = 0; i < 2049; ++i) {
+        printf("i: %i\n", i);
         if (data == 1) {
             direction = 1;
-            bcm2835_delay(5000);
         }
         else if (data == RANGE-1) {
             direction = -1;
-            bcm2835_delay(5000);
         }
         data += direction;
         bcm2835_pwm_set_data(PWM_CHANNEL, data);
         bcm2835_delay(1);
     }
+    
+    bcm2835_pwm_set_data(PWM_CHANNEL, 0);
+    
     bcm2835_close();
     return 0;
 }
