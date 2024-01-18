@@ -34,6 +34,8 @@ status command: sudo systemctl status apache2.service
 
 - youtube.com/@LowLevelLearning
 
+- youtube.com/watch?v=mshVdGIGwBs
+
 ### Electronics/Electronics Engineering
 
 - https://www.youtube.com/@SimplyElectronicsOfficial
