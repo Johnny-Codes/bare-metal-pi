@@ -42,9 +42,10 @@ void GetDHT11data(uint8_t pin) {
         printf("\n");
         for (i = 1; i < 2000; i++) {
             printf("for i: %i\n", i);
-            if (bcm2835_gpio_lev(pin) == 1)break;
+            if (bcm2835_gpio_lev(pin) == 1) break;
         };
         t = bcm2835_st_read();
+        printf("t: %i\n", t);
         for (i = 1; i < 2000; i++) {
             if (bcm2835_gpio_lev(pin) == 0) break;
         }
