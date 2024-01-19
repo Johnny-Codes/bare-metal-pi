@@ -13,7 +13,7 @@ void handle_sigint(int sig)
     bcm2835_gpio_write(LED, LOW);
     bcm2835_close();
 
-    printf("Cleanup complete. Exiting.\n");
+    printf("\nCleanup complete. Exiting.\n");
     exit(EXIT_SUCCESS);
 }
 
@@ -42,12 +42,13 @@ int main(int argc, char *argv[])
 
     bcm2835_gpio_fsel(LED, BCM2835_GPIO_FSEL_OUTP); // LED -> Output
     bcm2835_gpio_fsel(SENSOR, BCM2835_GPIO_FSEL_INPT); // Sensor -> Input
-
+    bcm2835_gpio_write(LED, LOW);
     while (1) {
         if (bcm2835_gpio_lev(SENSOR) == HIGH) {
             bcm2835_gpio_write(LED, HIGH);
-            capture_image();
+//            capture_image();
             printf("Motion Detected\n");
+//            break;
         }
         else {
             printf("No Motion\n");
