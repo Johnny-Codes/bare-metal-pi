@@ -6,7 +6,7 @@
 #include <sys/mman.h>
 
 uint8_t getByte(int b, int buf[]);
-void GetDHT22data(uint8_t pin);
+void GetDHT11data(uint8_t pin);
 
 int main(int argc, char** argv) {
     const struct sched_param priority = {1};
@@ -16,27 +16,32 @@ int main(int argc, char** argv) {
         return 1;
     bcm2835_gpio_fsel(RPI_GPIO_P1_11, BCM2835_GPIO_FSEL_INPT);
     bcm2835_delayMicroseconds(1000);
-
-    GetDHT22data(RPI_GPIO_P1_11);
+    printf("going to get data\n");
+    GetDHT11data(RPI_GPIO_P1_11);
 
     return 0;
 } 
 
-void GetDHT22data(uint8_t pin) {
+void GetDHT11data(uint8_t pin) {
     bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_write(pin, LOW);
-    bcm2835_delayMicroseconds(1000);
+    bcm2835_delayMicroseconds(10000);
     bcm2835_gpio_fsel(pin, BCM2835_GPIO_FSEL_INPT);
     int i;
     for (i = 1; i < 2000; i++) {
-        if (bcm2835_gpio_lev(pin) == 0)break;
+        printf("\ri: %i", i);
+        if (bcm2835_gpio_lev(pin) == 0) break;
     };
+    printf("\n");
     uint64_t t;
     int buf[41];
     int j;
     bcm2835_delayMicroseconds(1);
     for (j = 0; j < 41; j++) {
+        printf("\rj: %i", j);
+        printf("\n");
         for (i = 1; i < 2000; i++) {
+            printf("for i: %i\n", i);
             if (bcm2835_gpio_lev(pin) == 1)break;
         };
         t = bcm2835_st_read();
