@@ -12,6 +12,12 @@ My knowledge for bare metal programming on an RPi 4 Model B
 
 - gcc -o output-filename input-filename -lbcm2835  
 
+### Copy img from RPi to PC
+
+- scp <from> <to> 
+
+ie. scp rpi@raspberrypi.local .
+
 ### Apache server
 
 start command: sudo systemctl start apache2.service
