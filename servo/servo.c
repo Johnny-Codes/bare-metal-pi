@@ -1,10 +1,52 @@
 #include <stdio.h>
 #include <bcm2835.h>
+#include <MQTTClient.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define SERVO       18
 #define PWM_CHANNEL 0
 #define RANGE       180
 
+#define ADDRESS     "tcp://localhost:1883"
+#define CLIENTID    "ExampleClientPub"
+#define TOPIC       "MQTT Examples"
+// #define PAYLOAD     "Hello, World"
+#define QOS         1
+#define TIMEOUT     10000L
+
+int mqttData(char* payload)
+{
+    MQTTClient client;
+    MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
+    MQTTClient_message pubmsg = MQTTClient_message_initializer;
+    MQTTClient_deliveryToken token;
+    int rc;
+
+    MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+    conn_opts.keepAliveInterval = 20;
+    conn_opts.cleansession = 1;
+
+    if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS)
+    {
+        printf("Failed to connect, return code %d\n", rc);
+        exit(-1);
+    }
+    
+    pubmsg.payload = payload;
+    pubmsg.payloadlen = strlen(payload);
+    pubmsg.qos = QOS;
+    pubmsg.retained = 0;
+    MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
+    printf("Waiting for up to %d seconds for publication of %s\n"
+            "on topic %s for client with ClientID: %s\n",
+            (int)(TIMEOUT/1000), payload, TOPIC, CLIENTID);
+    rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+    printf("Message with delivery token %d delivered\n", token);
+    MQTTClient_disconnect(client, 10000);
+    MQTTClient_destroy(&client);
+    return rc;
+}
 
 void moveServo(int angle, int prevangle, int hold, int align) {
     int pulse;
@@ -15,7 +57,7 @@ void moveServo(int angle, int prevangle, int hold, int align) {
         if (align == 1) {
 //            printf("Aligning to %d\n", angle);
             pulse = 40;
-        } else {
+       } else {
             printf("Moving to %d with pulse %i\n", angle, pulse);
             pulse = (int)abs(((angle - prevangle)*33/RANGE));
         }
@@ -51,6 +93,9 @@ int main(int argc, char *argv[])
     size_t angles[] = { 45, 90, 135, 180, 90, 45, 135, 180, 0, 180, 0, 135, 0, 90, 0, 45, 90 };
     for (a = 0; a < sizeof(angles) / sizeof(size_t); ++a) {
         moveServo(angles[a], prevangle, 0, 0);
+        char payload[50];
+        snprintf(payload, sizeof(payload), "Moving to %zu", angles[a]);
+        mqttData(payload);
         prevangle = angles[a];
     }
     
